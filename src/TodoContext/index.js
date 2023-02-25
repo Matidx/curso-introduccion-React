@@ -39,13 +39,12 @@ function TodoProvider (props) {
         // Cada que el usuario interactúe con nuestra aplicación se guardarán los TODOs con nuestra nueva función
         saveTodos(newTodos);
       };
-      const completeTodo = (text) => {
+      const toggleCompleteTodos = (text) => {
         const todoIndex = todos.findIndex(todo => todo.text === text);
         const newTodos = [...todos];
-        newTodos[todoIndex].completed = true;
-        // Cada que el usuario interactúe con nuestra aplicación se guardarán los TODOs con nuestra nueva función
+        newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
         saveTodos(newTodos);
-      };
+      }
     
       const deleteTodo = (text) => {
         const todoIndex = todos.findIndex(todo => todo.text === text);
@@ -64,7 +63,7 @@ function TodoProvider (props) {
             searchValue,
             setSearchValue,
             searchedTodos,
-            completeTodo,
+            toggleCompleteTodos,
             addTodo,
             deleteTodo,
             openModal,
@@ -72,7 +71,6 @@ function TodoProvider (props) {
         }}>
             { props.children }
         </TodoContext.Provider>
-
     );
 }
 
